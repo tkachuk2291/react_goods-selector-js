@@ -29,9 +29,7 @@ export const App = () =>{
         <h1 className="title is-flex is-align-items-center">
           {selectedGood} is selected
           <button
-            onClick={() => {
-              setGood('');
-            }}
+            onClick={() => setGood('')}
             data-cy="ClearButton"
             type="button"
             className="delete ml-3"
@@ -48,17 +46,19 @@ export const App = () =>{
               data-cy="Good"
               className={good === selectedGood ? 'has-background-success-light ' : ''}
             >
+
               <td>
                 <button
                   onClick={() => {
-                    {good === selectedGood ? setGood('') : setGood(good)}
+                    good === selectedGood ? setGood('') : setGood(good)
                   }}
-                  data-cy="AddButton"
+                  data-cy={ good === selectedGood ? 'RemoveButton' : 'AddButton'}
                   type="button"
                   className={classNames("button", { "is-info": selectedGood === good })}
                 >
                   {good === selectedGood ? '-' : '+'}
                 </button>
+
               </td>
               <td data-cy="GoodTitle" className="is-vcentered">
                 {good}
@@ -66,8 +66,27 @@ export const App = () =>{
             </tr>
           ))}
 
+
+        {/*  good === selectedGood*/}
+        {/*  ? <button ......> - </button>*/}
+        {/*: <button ......> + </button>*/}
+
+
         </tbody>
       </table>
     </main>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
