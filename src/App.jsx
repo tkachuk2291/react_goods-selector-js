@@ -18,7 +18,8 @@ export const goods = [
 ];
 
 export const App = () =>{
-  let [selectedGood , setGood] = useState("Jam");
+  const [selectedGood , setSelectedGood] = useState("Jam");
+  const reset = () => setSelectedGood('')
   return (
     <main className="section container">
       {!selectedGood ? (
@@ -29,7 +30,7 @@ export const App = () =>{
         <h1 className="title is-flex is-align-items-center">
           {selectedGood} is selected
           <button
-            onClick={() => setGood('')}
+            onClick={reset}
             data-cy="ClearButton"
             type="button"
             className="delete ml-3"
@@ -44,13 +45,13 @@ export const App = () =>{
             <tr
               key={good}
               data-cy="Good"
-              className={good === selectedGood ? 'has-background-success-light ' : ''}
+              className={classNames( {"has-background-success-light": good === selectedGood})}
             >
 
               <td>
                 <button
                   onClick={() => {
-                    setGood(good === selectedGood ? '' : good);
+                    setSelectedGood(good === selectedGood ? '' : good);
 
                   }}
                   data-cy={ good === selectedGood ? 'RemoveButton' : 'AddButton'}
@@ -66,16 +67,8 @@ export const App = () =>{
               </td>
             </tr>
           ))}
-
-
-        {/*  good === selectedGood*/}
-        {/*  ? <button ......> - </button>*/}
-        {/*: <button ......> + </button>*/}
-
-
         </tbody>
       </table>
     </main>
   );
 };
-
